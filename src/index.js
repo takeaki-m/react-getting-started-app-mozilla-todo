@@ -1,17 +1,21 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
+import './index.css'; // アプリ全体に適用されるスタイルを保持
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import * as ReactDOMClient from 'react-dom/client';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+// このファイルがアプリのエントリーポイントとなる
+// Appコンポーネントを最初のコンポーネントとしてReaceアプリケーションをレンダリングすることをReactに伝える
+ // public/index.htmlを見ると、<div>であり<body>の内側であることがわかる
+const container = document.getElementById('root');
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+// create root
+const root = ReactDOMClient.createRoot(container);
+
+const DATA = [
+  {id: "todo-0", name: "Eat",     completed: true },
+  {id: "todo-1", name: "Sleep",   completed: false},
+  {id: "todo-2", name: "Repeat",  completed: true }
+]
+
+
+root.render(<App tasks={DATA} />);
